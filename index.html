@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html> 
+<head> 
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8" /> 
+  <title>Resource Data</title> 
+  
+  <link rel="stylesheet" type="text/css" href="index.css">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide|Josefin+Sans" rel="stylesheet">
+  <script src="http://maps.google.com/maps/api/js?sensor=false" 
+          type="text/javascript"></script>
+
+	  
+</head> 
+<body>
+	<center>
+		<h1>INTERACTIVE ENERGY WORLD MAP</h1>
+    </center>
+  <hr/>
+  <!-- <div id="map" style="width: 1000px; height: 600px;"></div> -->
+  <div id="map" style="width: 1750px; height: 1000px;"></div>
+
+  
+    <script type="text/javascript">
+ 
+    var locations = [
+    ['European Union', 50.048870,1.419597, 20],
+    ['United States', 37.090240, -95.712891, 19],
+    ['United Kingdom', 55.378051, -3.435973, 18],
+    ['Turkey', 38.963745, 35.243322, 17],
+    ['South Korea', 35.907757, 127.766922, 16],
+    ['South Africa', -30.559482, 22.937506, 15],
+    ['Saudi Arabia', 23.885942, 45.079162, 14],
+    ['Russian Federation', 61.524010, 105.318756, 13],
+    ['Mexico', 23.634501, -102.552784, 12],
+    ['Japan', 36.204824, 138.252924, 11],
+    ['Italy', 41.871940, 12.567380, 10],
+    ['Indonesia', -0.789275, 113.921327, 9],
+    ['Germany', 51.165691, 10.451526, 8],
+    ['France', 46.227638, 2.213749, 7],
+    ['China', 35.861660, 104.195397, 6],
+	  ['Canada', 56.130366, -106.346771, 5],
+	  ['Brazil', -14.235004, -51.925280, 4],
+	  ['Australia', -25.274398, 133.775136, 3],
+      ['Argentina', -38.416097, -63.616672, 2],
+      ['India', 20.5937, 78.9629, 1]
+    ];
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 2,
+      center: new google.maps.LatLng(-10, 10),
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+     
+    var infowindow = new google.maps.InfoWindow();
+
+    var marker, i;
+
+    for (i = 0; i < locations.length; i++) {  
+      marker = new google.maps.Marker({
+        position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+        map: map
+      });
+
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infowindow.setContent(locations[i][0]);
+          infowindow.open(map, marker);
+		  //document.getElementById("mdimg1").src = "images/"+locations[i][3]+".jpg";
+            //$('#dialog').dialog('open');
+          window.open("CountryData/"+locations[i][3] + ".html", "_self");
+        }
+      })(marker, i));
+    }	
+  </script>
+<h4> &#169;<a href="http://maps.google.com">Maps.google.com</a>(Map is embedded from Google Maps API's)</h4>
+  <h5><a href="https://www.bp.com">BP Statistics</a>All the data shown in the map is acquired from STATISTICAL REVIEW OF WORLD ENERGY by BP P.L.C</h5>
+  <h6>This work is done as a part of Final Year Master Thesis by Harshavardhan.Pilli 215100272  Universität Rostock, Under the esteemed guidance of Prof. Dr.-Ing. habil. Dr. h.c. Egon Hassel(Lehrstuhlleitung), M.Sc. Jens Hinrich Prause and M.Sc. Conrad Gierow.(Lehrstuhl für Technische Thermodynamik Universität Rostock.) </h6>
+
+  </body>
+</html>
